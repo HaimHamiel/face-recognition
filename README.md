@@ -2,7 +2,7 @@
 
 This is a React app whice provide an Face-Recognition by uploading url of an image.
 
-the API i used to get the face recognition:
+the API that I used to get the face recognition:
     [clarifai](https://www.clarifai.com/models)
 
 ## Dependencies
