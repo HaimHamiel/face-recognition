@@ -9,7 +9,6 @@ import Rank from './components/Rank/Rank';
 import 'tachyons';
 import Particles from "react-tsparticles";
 import './App.css';
-import Clarifai from 'clarifai';
 
 const particalesOptions = {
   background: {
@@ -100,7 +99,7 @@ const particalesOptions = {
 
     collisions: {
 
-      enable: true
+      enable: false
 
     },
 
@@ -159,10 +158,6 @@ const particalesOptions = {
   detectRetina: true
 }
 
-const app = new Clarifai.App({
- apiKey: 'Add API Key'
-});
-
 const initialState = {
     input: '',
     imageUrl: '',
@@ -218,11 +213,15 @@ class App extends Component {
 
   onPictureSubmit = () => {
     this.setState({imageUrl: this.state.input})
-    app.models
-    .predict(
-    Clarifai.FACE_DETECT_MODEL,
-    this.state.input
-    ).then(response => {
+    fetch('http://localhost:3001/imageurl', {
+      method: 'post',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+          input: this.state.input
+      })
+    })
+    .then(response => response.json())
+    .then(response => {
       if(response){
         fetch('http://localhost:3001/image', {
           method: 'put',
