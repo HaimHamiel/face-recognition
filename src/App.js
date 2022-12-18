@@ -213,7 +213,7 @@ class App extends Component {
 
   onPictureSubmit = () => {
     this.setState({imageUrl: this.state.input})
-    fetch('https://fast-peak-00388.herokuapp.com/imageurl', {
+    fetch('https://face-recognition-api-ujme.onrender.com/imageurl', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -223,7 +223,7 @@ class App extends Component {
     .then(response => response.json())
     .then(response => {
       if(response){
-        fetch('https://fast-peak-00388.herokuapp.com/image', {
+        fetch('https://face-recognition-api-ujme.onrender.com/image', {
           method: 'put',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({
